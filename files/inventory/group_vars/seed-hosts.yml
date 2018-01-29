@@ -1,0 +1,46 @@
+---
+openshift_cluster_content:
+- object: projectrequest
+  content:
+  - name: "cc-ci-cd-projects"
+    file: "{{ inventory_dir }}/../projects/cc-ci-cd.yml"
+  - name: "cc-dev"
+    file: "{{ inventory_dir }}/../projects/cc-dev.yml"
+  - name: "cc-test"
+    file: "{{ inventory_dir }}/../projects/cc-test.yml"
+- object: deployments
+  content:
+  - name: "jenkins"
+    namespace: "cc-ci-cd"
+    template: "{{ inventory_dir }}/../templates/jenkins.yml"
+    params: "{{ inventory_dir }}/../params/jenkins-params"
+  - name: "nexus"
+    namespace: "cc-ci-cd"
+    template: "{{ inventory_dir }}/../templates/nexus.yml"
+    params: "{{ inventory_dir }}/../params/nexus-params"
+- object: cc-ci-cd-builds
+  content:
+  - name: npm-build-pod
+    template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
+    params: "{{ inventory_dir }}/../params/npm-build-pod-params"
+    namespace: cc-ci-cd
+  - name: jenkins
+    template: "{{ inventory_dir }}/../templates/jenkins-s2i-build.yml"
+    params: "{{ inventory_dir }}/../params/jenkins-s2i-params"
+    namespace: cc-ci-cd
+- object: app-builds
+  content:
+  - name: cc-fe-build
+    template: "{{ inventory_dir }}/../../templates/cc-fe-build/template.yml"
+    params: "{{ inventory_dir }}/../params/cc-fe-build"
+    namespace: cc-ci-cd
+- object: app-deployments
+  content:
+  - name:  cc-fe
+    template: "{{ inventory_dir }}/../../templates/cc-fe-deploy/template.yml"
+    params: "{{ inventory_dir }}/../params/cc-fe-deploy"
+    namespace: cc-dev
+  - name: cc-fe
+    template: "{{ inventory_dir }}/../../templates/cc-fe-deploy/template.yml"
+    params: "{{ inventory_dir }}/../params/cc-fe-deploy"
+    namespace: cc-test
