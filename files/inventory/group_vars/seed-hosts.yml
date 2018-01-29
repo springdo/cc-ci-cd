@@ -31,16 +31,16 @@ openshift_cluster_content:
 - object: app-builds
   content:
   - name: cc-fe-build
-    template: "{{ inventory_dir }}/../../templates/cc-fe-build/template.yml"
+    template: "{{ inventory_dir }}/../templates/cc-fe-build.yml"
     params: "{{ inventory_dir }}/../params/cc-fe-build"
     namespace: cc-ci-cd
 - object: app-deployments
   content:
   - name:  cc-fe
-    template: "{{ inventory_dir }}/../../templates/cc-fe-deploy/template.yml"
-    params: "{{ inventory_dir }}/../params/cc-fe-deploy"
+    template: "{{ inventory_dir }}/../templates/cc-fe-deploy.yml"
+    params: "{{ inventory_dir }}/../params/cc-fe-deploy-dev"
     namespace: cc-dev
   - name: cc-fe
-    template: "{{ inventory_dir }}/../../templates/cc-fe-deploy/template.yml"
-    params: "{{ inventory_dir }}/../params/cc-fe-deploy"
+    template: "{{ inventory_dir }}/../templates/cc-fe-deploy.yml"
+    params: "{{ inventory_dir }}/../params/cc-fe-deploy-test"
     namespace: cc-test
