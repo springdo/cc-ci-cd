@@ -13,20 +13,24 @@ openshift_cluster_content:
   - name: "jenkins"
     namespace: "cc-ci-cd"
     template: "{{ inventory_dir }}/../templates/jenkins.yml"
-    params: "{{ inventory_dir }}/../params/jenkins-params"
+    params: "{{ inventory_dir }}/../params/jenkins"
   - name: "nexus"
     namespace: "cc-ci-cd"
     template: "{{ inventory_dir }}/../templates/nexus.yml"
-    params: "{{ inventory_dir }}/../params/nexus-params"
+    params: "{{ inventory_dir }}/../params/nexus"
 - object: cc-ci-cd-builds
   content:
   - name: npm-build-pod
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/npm-build-pod-params"
+    params: "{{ inventory_dir }}/../params/npm-build-pod"
+    namespace: cc-ci-cd
+  - name: golang-build-pod
+    template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
+    params: "{{ inventory_dir }}/../params/golang-build-pod"
     namespace: cc-ci-cd
   - name: jenkins
     template: "{{ inventory_dir }}/../templates/jenkins-s2i-build.yml"
-    params: "{{ inventory_dir }}/../params/jenkins-s2i-params"
+    params: "{{ inventory_dir }}/../params/jenkins-s2i"
     namespace: cc-ci-cd
 - object: app-builds
   content:
