@@ -5,5 +5,5 @@ items:
 - kind: ProjectRequest
   apiVersion: v1
   metadata:
-    name: cc-test
-  displayName: CC Test Workspace
+    name: companyxyz-ci-cd
+  displayName: companyxyz CI-CD

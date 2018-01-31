@@ -1,5 +1,0 @@
-PIPELINES_NAMESPACE=cc-ci-cd
-NAME=cc-fe
-DEPLOYER_USER=jenkins-cc
-APP_TAG=latest
-NAMESPACE=cc-test

@@ -2,61 +2,73 @@
 openshift_cluster_content:
 # - object: projectrequest
 #   content:
-#   - name: "cc-ci-cd-projects"
-#     file: "{{ inventory_dir }}/../projects/cc-ci-cd.yml"
-#   - name: "cc-dev"
-#     file: "{{ inventory_dir }}/../projects/cc-dev.yml"
-#   - name: "cc-test"
-#     file: "{{ inventory_dir }}/../projects/cc-test.yml"
+#   - name: "companyxyz-ci-cd-projects"
+#     file: "{{ inventory_dir }}/../projects/companyxyz-ci-cd.yml"
+#   - name: "companyxyz-dev"
+#     file: "{{ inventory_dir }}/../projects/companyxyz-dev.yml"
+#   - name: "companyxyz-test"
+#     file: "{{ inventory_dir }}/../projects/companyxyz-test.yml"
 - object: deployments
   content:
   - name: "jenkins"
-    namespace: "cc-ci-cd"
+    namespace: "companyxyz-ci-cd"
     template: "{{ inventory_dir }}/../templates/jenkins.yml"
     params: "{{ inventory_dir }}/../params/jenkins"
   - name: "gitlab"
-    namespace: "cc-ci-cd"
+    namespace: "companyxyz-ci-cd"
     template: "{{ inventory_dir }}/../templates/gitlab.yml"
     params: "{{ inventory_dir }}/../params/gitlab"
   - name: "nexus"
-    namespace: "cc-ci-cd"
+    namespace: "companyxyz-ci-cd"
     template: "{{ inventory_dir }}/../templates/nexus.yml"
     params: "{{ inventory_dir }}/../params/nexus"
-- object: cc-ci-cd-builds
+- object: companyxyz-ci-cd-builds
   content:
   - name: npm-build-pod
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
     params: "{{ inventory_dir }}/../params/npm-build-pod"
-    namespace: cc-ci-cd
+    namespace: companyxyz-ci-cd
   - name: golang-build-pod
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
     params: "{{ inventory_dir }}/../params/golang-build-pod"
-    namespace: cc-ci-cd
+    namespace: companyxyz-ci-cd
   - name: jenkins
     template: "{{ inventory_dir }}/../templates/jenkins-s2i-build.yml"
     params: "{{ inventory_dir }}/../params/jenkins-s2i"
-    namespace: cc-ci-cd
+    namespace: companyxyz-ci-cd
   - name: mongodb
     template: "{{ inventory_dir }}/../templates/mongodb.yml"
     params: "{{ inventory_dir }}/../params/mongodb"
-    namespace: cc-dev
+    namespace: companyxyz-dev
   - name: mongodb
     template: "{{ inventory_dir }}/../templates/mongodb.yml"
     params: "{{ inventory_dir }}/../params/mongodb"
-    namespace: cc-test
+    namespace: companyxyz-test
 - object: app-builds
   content:
-  - name: cc-fe-build
-    template: "{{ inventory_dir }}/../templates/cc-fe-build.yml"
-    params: "{{ inventory_dir }}/../params/cc-fe-build"
-    namespace: cc-ci-cd
+  - name: companyxyz-fe-build
+    template: "{{ inventory_dir }}/../templates/companyxyz-fe-build.yml"
+    params: "{{ inventory_dir }}/../params/companyxyz-fe-build"
+    namespace: companyxyz-ci-cd
+  - name: companyxyz-go-build
+    template: "{{ inventory_dir }}/../templates/companyxyz-go-build.yml"
+    params: "{{ inventory_dir }}/../params/companyxyz-go-build"
+    namespace: companyxyz-ci-cd
 - object: app-deployments
   content:
-  - name:  cc-fe
-    template: "{{ inventory_dir }}/../templates/cc-fe-deploy.yml"
-    params: "{{ inventory_dir }}/../params/cc-fe-deploy-dev"
-    namespace: cc-dev
-  - name: cc-fe
-    template: "{{ inventory_dir }}/../templates/cc-fe-deploy.yml"
-    params: "{{ inventory_dir }}/../params/cc-fe-deploy-test"
-    namespace: cc-test
+  - name:  companyxyz-fe
+    template: "{{ inventory_dir }}/../templates/companyxyz-fe-deploy.yml"
+    params: "{{ inventory_dir }}/../params/companyxyz-fe-deploy-dev"
+    namespace: companyxyz-dev
+  - name: companyxyz-fe
+    template: "{{ inventory_dir }}/../templates/companyxyz-fe-deploy.yml"
+    params: "{{ inventory_dir }}/../params/companyxyz-fe-deploy-test"
+    namespace: companyxyz-test
+  - name:  companyxyz-go
+    template: "{{ inventory_dir }}/../templates/companyxyz-go-deploy.yml"
+    params: "{{ inventory_dir }}/../params/companyxyz-go-deploy-dev"
+    namespace: companyxyz-dev
+  - name: companyxyz-go
+    template: "{{ inventory_dir }}/../templates/companyxyz-go-deploy.yml"
+    params: "{{ inventory_dir }}/../params/companyxyz-go-deploy-test"
+    namespace: companyxyz-test

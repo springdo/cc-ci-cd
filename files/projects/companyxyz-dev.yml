@@ -5,5 +5,5 @@ items:
 - kind: ProjectRequest
   apiVersion: v1
   metadata:
-    name: cc-ci-cd
-  displayName: C Company ;) CI-CD
+    name: companyxyz-dev
+  displayName: companyxyz Development Workspace
