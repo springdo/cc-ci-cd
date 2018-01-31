@@ -1,19 +1,23 @@
 ---
 openshift_cluster_content:
-- object: projectrequest
-  content:
-  - name: "cc-ci-cd-projects"
-    file: "{{ inventory_dir }}/../projects/cc-ci-cd.yml"
-  - name: "cc-dev"
-    file: "{{ inventory_dir }}/../projects/cc-dev.yml"
-  - name: "cc-test"
-    file: "{{ inventory_dir }}/../projects/cc-test.yml"
+# - object: projectrequest
+#   content:
+#   - name: "cc-ci-cd-projects"
+#     file: "{{ inventory_dir }}/../projects/cc-ci-cd.yml"
+#   - name: "cc-dev"
+#     file: "{{ inventory_dir }}/../projects/cc-dev.yml"
+#   - name: "cc-test"
+#     file: "{{ inventory_dir }}/../projects/cc-test.yml"
 - object: deployments
   content:
   - name: "jenkins"
     namespace: "cc-ci-cd"
     template: "{{ inventory_dir }}/../templates/jenkins.yml"
     params: "{{ inventory_dir }}/../params/jenkins"
+  - name: "gitlab"
+    namespace: "cc-ci-cd"
+    template: "{{ inventory_dir }}/../templates/gitlab.yml"
+    params: "{{ inventory_dir }}/../params/gitlab"
   - name: "nexus"
     namespace: "cc-ci-cd"
     template: "{{ inventory_dir }}/../templates/nexus.yml"
@@ -32,6 +36,14 @@ openshift_cluster_content:
     template: "{{ inventory_dir }}/../templates/jenkins-s2i-build.yml"
     params: "{{ inventory_dir }}/../params/jenkins-s2i"
     namespace: cc-ci-cd
+  - name: mongodb
+    template: "{{ inventory_dir }}/../templates/mongodb.yml"
+    params: "{{ inventory_dir }}/../params/mongodb"
+    namespace: cc-dev
+  - name: mongodb
+    template: "{{ inventory_dir }}/../templates/mongodb.yml"
+    params: "{{ inventory_dir }}/../params/mongodb"
+    namespace: cc-test
 - object: app-builds
   content:
   - name: cc-fe-build

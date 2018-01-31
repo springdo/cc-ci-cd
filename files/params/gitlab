@@ -1,0 +1,15 @@
+LDAP_BIND_DN=uid=c10-cc-gitlab-sa,cn=users,cn=accounts,dc=etl,dc=rht-labs,dc=com
+LDAP_USER_FILTER=(memberOf=cn=c10-cc-gitlab-users,cn=groups,cn=accounts,dc=etl,dc=rht-labs,dc=com)
+LDAP_PASSWORD="7ETHv8BhXICLqG"
+APPLICATION_HOSTNAME=gitlab.apps.cc.rht-labs.com
+
+LDAP_LABEL="CC Labs LDAP"
+
+LDAP_HOST=idm-1.etl.rht-labs.com
+LDAP_PORT=636
+LDAP_BASE=cn=users,cn=accounts,dc=etl,dc=rht-labs,dc=com
+
+ETC_VOL_SIZE=100Mi
+GITLAB_DATA_VOL_SIZE=5Gi
+POSTGRESQL_VOL_SIZE=5Gi
+GITLAB_ROOT_PASSWORD=C0zhMBqbFvJYTB
