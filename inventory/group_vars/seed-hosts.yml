@@ -1,23 +1,25 @@
 ---
 openshift_cluster_content:
-# - object: projectrequest
-#   content:
-#   - name: "companyxyz-ci-cd-projects"
-#     file: "{{ inventory_dir }}/../projects/companyxyz-ci-cd.yml"
-#   - name: "companyxyz-dev"
-#     file: "{{ inventory_dir }}/../projects/companyxyz-dev.yml"
-#   - name: "companyxyz-test"
-#     file: "{{ inventory_dir }}/../projects/companyxyz-test.yml"
+- object: projectrequest
+  content:
+  - name: "companyxyz-ci-cd-projects"
+    file: "{{ inventory_dir }}/../projects/companyxyz-ci-cd.yml"
+  - name: "companyxyz-dev"
+    file: "{{ inventory_dir }}/../projects/companyxyz-dev.yml"
+  - name: "companyxyz-test"
+    file: "{{ inventory_dir }}/../projects/companyxyz-test.yml"
+- object: project-acls
+  content:
+  - name: "ci-cd-acl"
+    namespace: "ci-cd"
+    template: "{{ inventory_dir }}/../templates/ci-cd-acl.yml"
+    params: "{{ inventory_dir }}/../params/ci-cd-acl-params"
 - object: deployments
   content:
   - name: "jenkins"
     namespace: "companyxyz-ci-cd"
     template: "{{ inventory_dir }}/../templates/jenkins.yml"
     params: "{{ inventory_dir }}/../params/jenkins"
-  - name: "gitlab"
-    namespace: "companyxyz-ci-cd"
-    template: "{{ inventory_dir }}/../templates/gitlab.yml"
-    params: "{{ inventory_dir }}/../params/gitlab"
   - name: "nexus"
     namespace: "companyxyz-ci-cd"
     template: "{{ inventory_dir }}/../templates/nexus.yml"

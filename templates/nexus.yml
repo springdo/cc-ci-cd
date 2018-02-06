@@ -2,7 +2,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: nexus-persistent
+  name: nexus
   annotations:
     openshift.io/display-name: Nexus Persistent Template
     description: Creates a Nexus with configuration and artifacts stored in a persistent
@@ -10,8 +10,26 @@ metadata:
     iconClass: icon-nexus
     tags: instant-app
   labels:
-    app: Nexus
+    app: nexus
 objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      name: "${NAME}"
+      app: "${NAME}"
+    name: "${NAME}"
+  spec:
+    tags:
+    - annotations:
+        openshift.io/imported-from: "${CONTAINER_IMAGE}"
+      from:
+        kind: DockerImage
+        name: "${CONTAINER_IMAGE}"
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
 - kind: PersistentVolumeClaim
   apiVersion: v1
   metadata:
@@ -60,7 +78,7 @@ objects:
               memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           volumeMounts:
-          - mountPath: "/sonatype-work"
+          - mountPath: "/nexus-data"
             name: "${NAME}"
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -88,6 +106,7 @@ objects:
   metadata:
     labels:
       name: "${NAME}"
+      app: "${NAME}"
     name: "${NAME}"
   spec:
     ports:
@@ -99,27 +118,11 @@ objects:
     sessionAffinity: None
     type: ClusterIP
 - apiVersion: v1
-  kind: ImageStream
-  metadata:
-    labels:
-      name: "${NAME}"
-    name: "${NAME}"
-  spec:
-    tags:
-    - annotations:
-        openshift.io/imported-from: "${CONTAINER_IMAGE}"
-      from:
-        kind: DockerImage
-        name: "${CONTAINER_IMAGE}"
-      importPolicy: {}
-      name: latest
-      referencePolicy:
-        type: Source
-- apiVersion: v1
   kind: Route
   metadata:
     labels:
       name: "${NAME}"
+      app: "${NAME}"
     name: "${NAME}"
   spec:
     port:
@@ -147,6 +150,6 @@ parameters:
 - description: The Container Image to use for the ImageStream
   displayName: Nexus Container Image
   name: CONTAINER_IMAGE
-  value: sonatype/nexus3
+  value: sonatype/nexus3:3.7.1
 labels:
   template: nexus-persistent-template
