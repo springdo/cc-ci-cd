@@ -10,6 +10,15 @@ metadata:
     iconClass: icon-jenkins
     tags: instant-app,jenkins
 objects:
+- apiVersion: v1
+  data:
+    .gitconfig: W2h0dHBdCnNzbFZlcmlmeT1mYWxzZQ==
+    password: N0VUSHY4QmhYSUNMcUc=
+    username: YzEwLXhwZXJ0ZXgtZ2l0bGFiLXNh
+  kind: Secret
+  metadata:
+    name: gitlab-auth
+  type: kubernetes.io/basic-auth
 - kind: BuildConfig
   apiVersion: v1
   metadata:
@@ -18,9 +27,13 @@ objects:
     runPolicy: Serial
     source:
       type: Git
+      sourceSecret:
+        name: gitlab-auth
       git:
         uri: "${SOURCE_REPOSITORY_URL}"
         ref: "${SOURCE_REPOSITORY_REF}"
+      sourceSecret:
+        name: gitlab-auth
     strategy:
       type: Source
       sourceStrategy:

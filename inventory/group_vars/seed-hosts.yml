@@ -2,50 +2,81 @@
 openshift_cluster_content:
 - object: projectrequest
   content:
-  - name: "companyxyz-ci-cd-projects"
+  - name: "ci-cd-projects"
     file: "{{ inventory_dir }}/../projects/companyxyz-ci-cd.yml"
-  - name: "companyxyz-dev"
-    file: "{{ inventory_dir }}/../projects/companyxyz-dev.yml"
-  - name: "companyxyz-test"
-    file: "{{ inventory_dir }}/../projects/companyxyz-test.yml"
+    file_action: create
+  - name: "labs-dev"
+    file: "{{ inventory_dir }}/../projects/labs-dev.yml"
+    file_action: create
+  - name: "labs-test"
+    file: "{{ inventory_dir }}/../projects/labs-test.yml"
+    file_action: create
 - object: project-acls
   content:
   - name: "ci-cd-acl"
     namespace: "ci-cd"
     template: "{{ inventory_dir }}/../templates/ci-cd-acl.yml"
     params: "{{ inventory_dir }}/../params/ci-cd-acl-params"
-- object: deployments
+  - name: "labs-dev-acl"
+    namespace: "labs-dev"
+    template: "{{ inventory_dir }}/../templates/ci-cd-acl.yml"
+    params: "{{ inventory_dir }}/../params/ci-cd-acl-params"
+  - name: "labs-test-acl"
+    namespace: "labs-test"
+    template: "{{ inventory_dir }}/../templates/ci-cd-acl.yml"
+    params: "{{ inventory_dir }}/../params/ci-cd-acl-params"
+  - name: "labs-uat-acl"
+    namespace: "labs-uat"
+    template: "{{ inventory_dir }}/../templates/ci-cd-acl.yml"
+    params: "{{ inventory_dir }}/../params/ci-cd-acl-params"
+- object: ci-cd-builds
   content:
-  - name: "jenkins"
-    namespace: "companyxyz-ci-cd"
-    template: "{{ inventory_dir }}/../templates/jenkins.yml"
-    params: "{{ inventory_dir }}/../params/jenkins"
-  - name: "nexus"
-    namespace: "companyxyz-ci-cd"
-    template: "{{ inventory_dir }}/../templates/nexus.yml"
-    params: "{{ inventory_dir }}/../params/nexus"
-- object: companyxyz-ci-cd-builds
-  content:
-  - name: npm-build-pod
+  - name: npm-jenkins-slave
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/npm-build-pod"
-    namespace: companyxyz-ci-cd
-  - name: golang-build-pod
+    params: "{{ inventory_dir }}/../params/npm-jenkins-slave"
+    namespace: ci-cd
+  - name: golang-jenkins-slave
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/golang-build-pod"
-    namespace: companyxyz-ci-cd
+    params: "{{ inventory_dir }}/../params/golang-jenkins-slave"
+    namespace: ci-cd
+  - name: zap-jenkins-slave
+    template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
+    params: "{{ inventory_dir }}/../params/zap-jenkins-slave"
+    namespace: ci-cd
+  - name: arachni-jenkins-slave
+    template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
+    params: "{{ inventory_dir }}/../params/arachni-jenkins-slave"
+    namespace: ci-cd
+  - name: mongodb-jenkins-slave
+    template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
+    params: "{{ inventory_dir }}/../params/mongodb-jenkins-slave"
+    namespace: ci-cd
+  - name: gradle-jenkins-slave
+    template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
+    params: "{{ inventory_dir }}/../params/mongodb-jenkins-slave"
+    namespace: ci-cd
   - name: jenkins
     template: "{{ inventory_dir }}/../templates/jenkins-s2i-build.yml"
     params: "{{ inventory_dir }}/../params/jenkins-s2i"
-    namespace: companyxyz-ci-cd
-  - name: mongodb
-    template: "{{ inventory_dir }}/../templates/mongodb.yml"
-    params: "{{ inventory_dir }}/../params/mongodb"
-    namespace: companyxyz-dev
-  - name: mongodb
-    template: "{{ inventory_dir }}/../templates/mongodb.yml"
-    params: "{{ inventory_dir }}/../params/mongodb"
-    namespace: companyxyz-test
+    namespace: ci-cd
+  # - name: mongodb-dev
+  #   template: "{{ inventory_dir }}/../templates/mongodb.yml"
+  #   params: "{{ inventory_dir }}/../params/mongodb-dev"
+  #   namespace: labs-dev
+  # - name: mongodb-test
+  #   template: "{{ inventory_dir }}/../templates/mongodb.yml"
+  #   params: "{{ inventory_dir }}/../params/mongodb-test"
+  #   namespace: labs-test
+- object: deployments
+  content:
+  - name: "jenkins"
+    namespace: "ci-cd"
+    template: "{{ inventory_dir }}/../templates/jenkins.yml"
+    params: "{{ inventory_dir }}/../params/jenkins"
+  - name: "nexus"
+    namespace: "ci-cd"
+    template: "{{ inventory_dir }}/../templates/nexus.yml"
+    params: "{{ inventory_dir }}/../params/nexus"
 - object: app-builds
   content:
   - name: companyxyz-fe-build
@@ -61,16 +92,16 @@ openshift_cluster_content:
   - name:  companyxyz-fe
     template: "{{ inventory_dir }}/../templates/companyxyz-fe-deploy.yml"
     params: "{{ inventory_dir }}/../params/companyxyz-fe-deploy-dev"
-    namespace: companyxyz-dev
+    namespace: labs-dev
   - name: companyxyz-fe
     template: "{{ inventory_dir }}/../templates/companyxyz-fe-deploy.yml"
     params: "{{ inventory_dir }}/../params/companyxyz-fe-deploy-test"
-    namespace: companyxyz-test
+    namespace: labs-test
   - name:  companyxyz-go
     template: "{{ inventory_dir }}/../templates/companyxyz-go-deploy.yml"
     params: "{{ inventory_dir }}/../params/companyxyz-go-deploy-dev"
-    namespace: companyxyz-dev
+    namespace: labs-dev
   - name: companyxyz-go
     template: "{{ inventory_dir }}/../templates/companyxyz-go-deploy.yml"
     params: "{{ inventory_dir }}/../params/companyxyz-go-deploy-test"
-    namespace: companyxyz-test
+    namespace: labs-test

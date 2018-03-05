@@ -1,5 +1,5 @@
-PIPELINES_NAMESPACE=companyxyz-ci-cd
+PIPELINES_NAMESPACE=ci-cd
 NAME=companyxyz-fe
-DEPLOYER_USER=jenkins-companyxyz
+DEPLOYER_USER=jenkins
 APP_TAG=latest
-NAMESPACE=companyxyz-dev
+NAMESPACE=labs-dev

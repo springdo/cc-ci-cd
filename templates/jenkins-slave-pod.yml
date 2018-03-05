@@ -66,7 +66,7 @@ parameters:
   displayName: Name
   description: The name assigned to all objects and the resulting imagestream.
   required: true
-  value: mvn-build-pod
+  value: mvn-jenkins-slave
 - name: SOURCE_REPOSITORY_URL
   displayName: Git Repository URL
   description: The URL of the repository with your application source code.
@@ -87,4 +87,4 @@ parameters:
     build pod type.
   value: jenkins-slave-base-rhel7
 labels:
-  template: build-pod-template
+  template: jenkins-slave-template
