@@ -70,12 +70,12 @@ parameters:
   value: jenkins
 - name: SOURCE_REPOSITORY_USERNAME
   displayName: SOURCE_REPOSITORY_USERNAME
-  description: The name of the user to checkout code from gitlab
+  description: The name of the user to checkout code from gitlab (base64 endoded)
   required: true
   value: jenkins
 - name: SOURCE_REPOSITORY_PASSWORD
   displayName: SOURCE_REPOSITORY_PASSWORD
-  description: The password of the user to checkout code from gitlab
+  description: The password of the user to checkout code from gitlab (base64 endoded)
   required: true
   value: jenkins
 - name: SOURCE_CONTEXT_DIR

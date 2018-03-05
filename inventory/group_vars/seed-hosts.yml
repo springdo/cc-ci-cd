@@ -3,7 +3,7 @@ openshift_cluster_content:
 - object: projectrequest
   content:
   - name: "ci-cd-projects"
-    file: "{{ inventory_dir }}/../projects/companyxyz-ci-cd.yml"
+    file: "{{ inventory_dir }}/../projects/ci-cd.yml"
     file_action: create
   - name: "labs-dev"
     file: "{{ inventory_dir }}/../projects/labs-dev.yml"

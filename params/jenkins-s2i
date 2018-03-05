@@ -2,3 +2,5 @@ SOURCE_REPOSITORY_URL=https://github.com/springdo/companyxyz-ci-cd
 NAME=jenkins
 SOURCE_CONTEXT_DIR=jenkins-s2i
 SOURCE_REPOSITORY_REF=master
+SOURCE_REPOSITORY_USERNAME=amVua2lucw==
+SOURCE_REPOSITORY_PASSWORD=amVua2lucw==
