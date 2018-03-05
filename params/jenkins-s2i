@@ -1,3 +1,4 @@
 SOURCE_REPOSITORY_URL=https://gitlab.apps.companyxyz.rht-labs.com/companyxyz/jenkins-s2i.git
 NAME=jenkins
+SOURCE_CONTEXT_DIR=jenkins-s2i
 SOURCE_REPOSITORY_REF=master

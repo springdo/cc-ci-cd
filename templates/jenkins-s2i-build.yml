@@ -12,9 +12,8 @@ metadata:
 objects:
 - apiVersion: v1
   data:
-    .gitconfig: W2h0dHBdCnNzbFZlcmlmeT1mYWxzZQ==
-    password: N0VUSHY4QmhYSUNMcUc=
-    username: YzEwLXhwZXJ0ZXgtZ2l0bGFiLXNh
+    password: "${SOURCE_REPOSITORY_USERNAME}"
+    username: "${SOURCE_REPOSITORY_PASSWORD}"
   kind: Secret
   metadata:
     name: gitlab-auth
@@ -26,6 +25,7 @@ objects:
   spec:
     runPolicy: Serial
     source:
+      contextDir: "${SOURCE_CONTEXT_DIR}"
       type: Git
       sourceSecret:
         name: gitlab-auth
@@ -68,6 +68,20 @@ parameters:
   description: The name assigned to all objects and the resulting imagestream.
   required: true
   value: jenkins
+- name: SOURCE_REPOSITORY_USERNAME
+  displayName: SOURCE_REPOSITORY_USERNAME
+  description: The name of the user to checkout code from gitlab
+  required: true
+  value: jenkins
+- name: SOURCE_REPOSITORY_PASSWORD
+  displayName: SOURCE_REPOSITORY_PASSWORD
+  description: The password of the user to checkout code from gitlab
+  required: true
+  value: jenkins
+- name: SOURCE_CONTEXT_DIR
+  displayName: Git Context Directory
+  description: Set this to the directory where the build information is (e.g. Dockerfile)
+    if not using the default
 - name: SOURCE_REPOSITORY_URL
   displayName: Git Repository URL
   description: The URL of the repository with your application source code.

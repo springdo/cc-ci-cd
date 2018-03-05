@@ -25,10 +25,6 @@ openshift_cluster_content:
     namespace: "labs-test"
     template: "{{ inventory_dir }}/../templates/ci-cd-acl.yml"
     params: "{{ inventory_dir }}/../params/ci-cd-acl-params"
-  - name: "labs-uat-acl"
-    namespace: "labs-uat"
-    template: "{{ inventory_dir }}/../templates/ci-cd-acl.yml"
-    params: "{{ inventory_dir }}/../params/ci-cd-acl-params"
 - object: ci-cd-builds
   content:
   - name: npm-jenkins-slave
