@@ -6,4 +6,4 @@ items:
   apiVersion: v1
   metadata:
     name: labs-dev
-  displayName: companyxyz Development Workspace
+  displayName: Companyxyz Development Workspace
