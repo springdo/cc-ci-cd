@@ -5,5 +5,5 @@ items:
 - kind: ProjectRequest
   apiVersion: v1
   metadata:
-    name: companyxyz-test
+    name: labs-test
   displayName: companyxyz Test Workspace
