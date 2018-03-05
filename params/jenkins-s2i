@@ -1,4 +1,4 @@
-SOURCE_REPOSITORY_URL=https://gitlab.apps.companyxyz.rht-labs.com/companyxyz/jenkins-s2i.git
+SOURCE_REPOSITORY_URL=https://github.com/springdo/companyxyz-ci-cd
 NAME=jenkins
 SOURCE_CONTEXT_DIR=jenkins-s2i
 SOURCE_REPOSITORY_REF=master

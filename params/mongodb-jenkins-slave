@@ -1,4 +1,4 @@
-SOURCE_REPOSITORY_URL=https://github.com/springdo/cc-ci-cd
+SOURCE_REPOSITORY_URL=https://github.com/springdo/companyxyz-ci-cd
 SOURCE_CONTEXT_DIR=docker/mongodb-jenkins-slave
 BUILDER_IMAGE_NAME=registry.access.redhat.com/openshift3/jenkins-slave-base-rhel7:latest
 NAME=mongodb-jenkins-slave

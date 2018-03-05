@@ -1,4 +1,4 @@
-SOURCE_REPOSITORY_URL=https://github.com/springdo/cc-ci-cd
+SOURCE_REPOSITORY_URL=https://github.com/springdo/companyxyz-ci-cd
 SOURCE_CONTEXT_DIR=docker/zap-jenkins-slave
 BUILDER_IMAGE_NAME=centos:centos7
 NAME=zap-jenkins-slave
