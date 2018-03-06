@@ -29,27 +29,27 @@ openshift_cluster_content:
   content:
   - name: npm-jenkins-slave
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/npm-jenkins-slave"
+    params: "{{ inventory_dir }}/../params/jenkins-slave-npm"
     namespace: ci-cd
   - name: golang-jenkins-slave
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/golang-jenkins-slave"
+    params: "{{ inventory_dir }}/../params/jenkins-slave-golang"
     namespace: ci-cd
   - name: zap-jenkins-slave
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/zap-jenkins-slave"
+    params: "{{ inventory_dir }}/../params/jenkins-slave-zap"
     namespace: ci-cd
   - name: arachni-jenkins-slave
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/arachni-jenkins-slave"
+    params: "{{ inventory_dir }}/../params/jenkins-slave-arachni"
     namespace: ci-cd
   - name: mongodb-jenkins-slave
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/mongodb-jenkins-slave"
+    params: "{{ inventory_dir }}/../params/jenkins-slave-mongodb"
     namespace: ci-cd
   - name: gradle-jenkins-slave
     template: "{{ inventory_dir }}/../templates/jenkins-slave-pod.yml"
-    params: "{{ inventory_dir }}/../params/mongodb-jenkins-slave"
+    params: "{{ inventory_dir }}/../params/jenkins-slave-gradle"
     namespace: ci-cd
   - name: jenkins
     template: "{{ inventory_dir }}/../templates/jenkins-s2i-build.yml"
